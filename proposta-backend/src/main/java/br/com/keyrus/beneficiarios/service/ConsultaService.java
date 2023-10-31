@@ -43,6 +43,7 @@ public class ConsultaService {
 	private ConsultaMapper mapper;
 	
 	/**
+	 * Método responsável por realizar o cadastro de uma consulta na base de dados
 	 * 
 	 * @param ConsultaDTO
 	 * @return ConsultaDTO
@@ -75,6 +76,16 @@ public class ConsultaService {
 		return response;
 	}
 	
+	/**
+	 * Método responsável por validar se o agendamento ja foi realizado, para que nao ocorra conflito.
+	 * 
+	 * @param beneficiario
+	 * @param dataHora
+	 * @throws ConflitoAgendamentoException
+	 * 
+	 * author: felipe.nogueira
+	 * created: 30/10/2023
+	 */
 	public void validarAgendamento(String beneficiario, LocalDateTime dataHora) throws ConflitoAgendamentoException {
 		if(repository.getConsultaByBeneficiarioCpfAndDataHora(beneficiario, dataHora).isPresent())
 			throw new ConflitoAgendamentoException("Conflito de Agendas. Foi encontrado outro agendamento para o mesmo dia e horario.");
@@ -82,6 +93,7 @@ public class ConsultaService {
 	}
 	
 	/**
+	 * Método responsável por chamar o serviço que realiza a busca e validação da especialidade e depois, setar a especialidade na consulta
 	 * 
 	 * @param nomeEspecialidade
 	 * @param consulta
@@ -95,6 +107,7 @@ public class ConsultaService {
 	}
 	
 	/**
+	 * Método responsável por chamar o serviço que realiza a busca e validação da do beneficiario e depois, setar o beneficiario na consulta
 	 * 
 	 * @param cpfBeneficiario
 	 * @param consulta
@@ -110,6 +123,7 @@ public class ConsultaService {
 	
 	
 	/**
+	 * Método responsável por listar todas consultas de um beneficiario
 	 * 
 	 * @param cpfBeneficiario
 	 * @return
@@ -134,6 +148,7 @@ public class ConsultaService {
 	}
 	
 	/**
+	 * Método responsável por realizar a exclusão de uma consulta por id
 	 * 
 	 * @param idConsulta
 	 * 
@@ -150,6 +165,7 @@ public class ConsultaService {
 	}
 	
 	/**
+	 * Método responsável por realizar a limpeza total na base de Consultas
 	 * 
 	 * author: felipe.nogueira
 	 * created: 30/10/2023

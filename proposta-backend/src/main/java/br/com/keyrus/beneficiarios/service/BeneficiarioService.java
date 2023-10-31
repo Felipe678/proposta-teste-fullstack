@@ -26,6 +26,7 @@ public class BeneficiarioService {
 	private BeneficiarioMapper mapper;
 	
 	/**
+	 * Método responsável por cadastrar um beneficiario na base de dados
 	 * 
 	 * @param beneficiarioDTO
 	 * @return
@@ -52,6 +53,15 @@ public class BeneficiarioService {
 		return response;
 	}
 	
+	/**
+	 * Método responsável por validar se o beneficiario já está cadastrado
+	 * 
+	 * @param cpf
+	 * @throws BeneficiarioCadastradoException
+	 * 
+	 * author: felipe.nogueira
+	 * created: 30/10/2023
+	 */
 	public void validarBeneficiario(String cpf) throws BeneficiarioCadastradoException {
 		if(repository.getBeneficiarioByCpf(cpf).isPresent()) {
 			throw new BeneficiarioCadastradoException("Beneficiario já cadastrado");
@@ -59,6 +69,7 @@ public class BeneficiarioService {
 	}
 	
 	/**
+	 * Método responsável por realizar a consulta do beneficiario na base de dados
 	 * 
 	 * @param cpf
 	 * @return
@@ -86,6 +97,7 @@ public class BeneficiarioService {
 	}
 	
 	/**
+	 * Método responsável por realizar a exclusão do beneficiario na base de dados
 	 * 
 	 * @param cpf
 	 * 
@@ -104,6 +116,7 @@ public class BeneficiarioService {
 	}
 	
 	/**
+	 * Método responsável por realizar a limpeza total na base de Beneficiarios
 	 * 
 	 * author: felipe.nogueira
 	 * created: 30/10/2023

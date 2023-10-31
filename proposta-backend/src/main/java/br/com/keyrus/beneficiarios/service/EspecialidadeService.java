@@ -25,6 +25,7 @@ public class EspecialidadeService {
 	private EspecialidadeMapper mapper;
 	
 	/**
+	 * Método responsável por buscar a especialidade pela descrição
 	 * 
 	 * @param String nomeEspecialidade
 	 * @return Especialidade
@@ -49,12 +50,22 @@ public class EspecialidadeService {
 		return response;
 	}
 
+	/**
+	 * Método responsável por realizar a busca e validação da especialidade
+	 * 
+	 * @param especialidade
+	 * @throws EspecialidadeException
+	 * 
+	 * author: felipe.nogueira
+	 * created: 30/10/2023
+	 */
 	private void validarEspecialidade(Optional<Especialidade> especialidade) throws EspecialidadeException {
 		if(especialidade.isEmpty())
 			throw new EspecialidadeException("Especialidade não encontrada");
 	}
 	
 	/**
+	 * Método responsável por realizar a busca de todas as especialidades cadastradas
 	 * 
 	 * @return List<EspecialidadeDTO>
 	 * 
